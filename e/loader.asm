@@ -357,6 +357,8 @@ LABEL_PM_START:
 	mov	al, 'P'
 	mov	[gs:((80 * 0 + 39) * 2)], ax	; 屏幕第 0 行, 第 39 列。
 
+	; 重新放置内核时，没看到把内核放置到 SelectorFlatC 指示的段里面啊。为啥下面就认为内核在这个段里面呢？
+	; SelectorFlatC 和 SelectorFlatRW 所指示的段中的数据会相互覆盖吗？我认为会覆盖。但实际上不会覆盖。我理解不了。
 	call	InitKernel
 
 	;jmp	$
